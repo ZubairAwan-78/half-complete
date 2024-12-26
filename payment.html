@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Responsive Payment Page</title>
+  <style>
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 50px auto;
+      background: #fff;
+      box-shadow: 0 0 10px #4384f5;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .form-section, .details-section {
+      flex: 1;
+      padding: 40px;
+      min-width: 300px; /* Ensures sections stack on smaller screens */
+      box-sizing: border-box;
+    }
+    .form-section {
+      border-right: 1px solid #ccc;
+    }
+    .form-section h1 {
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    .form-section label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .form-section input,
+    .form-section select,
+    .form-section button {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    .form-section button {
+      background-color: #4384f5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .details-section {
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+    .details-section h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .details-section h3 {
+      font-size: 26px;
+      margin-bottom: 30px;
+      color: #666;
+    }
+    .bank-details {
+      margin-top: 20px;
+      text-align: left;
+      padding: 30px;
+      background-color: #fff;
+      box-shadow: 0 0 10px black;
+      border-radius: 8px;
+    }
+    .bank-details h4 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .bank-details p {
+      margin: 8px 0;
+      color: #555;
+      font-size: 16px;
+    }
+    .p-s{
+        height: 46px;
+    }
+
+    /* Media Queries for 700px and Below */
+    @media (max-width: 700px) {
+      .container {
+        flex-direction: column; /* Stack sections vertically */
+      }
+      .form-section {
+        border-right: none;
+        border-bottom: 1px solid #ccc; /* Add border between sections */
+      }
+      .form-section h1 {
+        font-size: 24px; /* Adjust heading size */
+      }
+      .details-section {
+        padding: 20px; /* Reduce padding for smaller screens */
+      }
+      .details-section h2, .details-section h3 {
+        font-size: 22px; /* Adjust font sizes */
+      }
+      .bank-details {
+        padding: 20px; /* Reduce padding */
+      }
+      .form-section input,
+      .form-section select,
+      .form-section button {
+        padding: 12px; /* Adjust input/button size */
+        font-size: 14px; /* Smaller font size */
+      }
+      .bank-details p {
+        font-size: 14px; /* Adjust text size in bank details */
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!--Header 1 Start-->
+
+<nav class="header-1">
+    <h1>LOGO</h1>
+    <div class="search-container">
+    <form class="header1">
+        <input type="search" placeholder="search here..">
+        <img class="searchicon" src="./Icons/Searchicon.png" alt="" width="20px">
+    </form>
+    </div>
+    <div class="iconsh1">
+        <img src="./Icons/heart.png" alt="" width="20px">
+        <img src="./Icons/cart.png" alt="" width="20px">
+        <img src="./Icons/user.png" alt="" width="20px">
+    </div>
+</nav>
+
+<!--Header 1 End-->
+
+<!--Header 2 Start-->
+
+<nav>
+    <div class="logoh2">
+        <h1></h1>
+    </div>
+    <ul class="ulh2" id="menulist">
+        <li><a href="./index.html">HOME</a></li>
+        <li><a href="">PRODUCTS</a></li>
+        <li><a href="./Pricing.html">PRICING</a></li>
+        <li><a href="">ABOUT</a></li>
+        <li><a href="">CONTACT US</a></li>
+    </ul>
+    <div class="menuicon">
+        <img class="header1icon" src="./Icons/menu.png" alt="Menu png" width="25px" onclick="toggleMenu()">
+    </div>
+</nav>
+
+<!--Header 2 End-->
+
+<div class="container">
+  <!-- Left Section -->
+  <div class="form-section">
+    <h1>Complete Your Payment</h1>
+    <form action="process-payment.php" method="POST" enctype="multipart/form-data">
+      <!-- First Name -->
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+
+      <!-- Last Name -->
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+
+      <!-- User Email -->
+      <label for="userEmail">Email Address</label>
+      <input type="email" id="userEmail" name="userEmail" placeholder="Enter your email" required>
+
+      <!-- Payment Method -->
+      <label for="paymentMethod">Payment Method</label>
+      <select id="paymentMethod" name="paymentMethod" required>
+        <option value="" disabled selected>Select Payment Method</option>
+        <option value="Bank Transfer">Bank Transfer</option>
+        <option value="Credit Card">Credit Card</option>
+        <option value="PayPal">PayPal</option>
+      </select>
+
+      <!-- Payment Screenshot -->
+      <label for="paymentScreenshot">Upload Payment Screenshot</label>
+      <input class="p-s" type="file" id="paymentScreenshot" name="paymentScreenshot" accept="image/*" required>
+
+      <!-- Submit Button -->
+      <button class="submit-b">Submit</button>
+    </form>
+  </div>
+
+  <!-- Right Section -->
+  <div class="details-section">
+    <h2 id="productName">Product Name</h2>
+    <h3 id="productPrice">Price: $0</h3>
+
+    <!-- Bank Account Details -->
+    <div class="bank-details">
+      <h4>Account Details</h4>
+      <p>Jazzcash: 0313-5646630</p>
+      <p>Easypaisa: 0313-0545992</p>
+      <p>Bank Account: 08352638284</p>
+    </div>
+  </div>
+</div>
+
+<!--Footer Start-->
+<div class="footer-container">
+  <div class="f-aboutus">
+      <h2>About Us</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor repudiandae et quod soluta neque modi perferendis cum veritatis excepturi suscipit!</p>
+      <ul class="sci">
+
+      </ul>
+  </div>
+  <div class="f-quicklinks">
+      <h2>Support</h2>
+      <ul>
+          <li><a href="#">Home Page</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">Pricing</a></li>
+      </ul>
+  </div>
+  <div class="f-pricing">
+      <h2>Products</h2>
+      <ul>
+          <li><a href="#">E-books</a></li>
+          <li><a href="#">Software</a></li>
+          <li><a href="#">Accounts</a></li>
+          <li><a href="#">Ai Reels</a></li>
+      </ul>
+  </div>
+</div>
+
+<div class="footer-copyright">
+  <p>&copy; 2024 Digital Zub. All Rights Reserved.</p>
+</div>
+
+<!--Footer End-->
+
+<script>
+  // Get product details from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const productName = urlParams.get('product');
+  const price = urlParams.get('price');
+
+  // Populate product details on the page
+  document.getElementById('productName').innerText = productName || "N/A";
+  document.getElementById('productPrice').innerText = price ? `Price: $${price}` : "Price: $0";
+
+  let menulist = document.getElementById("menulist")
+    menulist.style.maxHeight = "0px";
+
+    function toggleMenu(){
+        if (menulist.style.maxHeight == "0px") {
+            menulist.style.maxHeight = "400px"
+        } else {
+            menulist.style.maxHeight = "0px"
+        }
+    }
+</script>
+
+</body>
+</html>
